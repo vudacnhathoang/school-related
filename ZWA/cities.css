@@ -20,7 +20,6 @@ article:last-child{
 } */
 article::after{
     content: "-----------------------------"
-    
 }
 
 article:last-of-type::after
@@ -36,7 +35,6 @@ article:last-of-type::after
     article{
         background-color: yellow;
     }
-
 }
 
 @media screen and (max-width: 800px) {
