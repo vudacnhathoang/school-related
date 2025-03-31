@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
+body{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    height: 100%;
+    background-image: url('images/signb.png');
+    background-size: cover;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-image: center center;
+}
+#back{
+    position:fixed;
+    top:20px;
+    left: 30px;
+    border-radius: 20px;
+    border: 1px solid #123730;
+    color:#123730;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+#form-container{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+h2{
+    color: #123730;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: rgba(245, 245, 220, 0); 
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 20px;
+    align-items: center;
+    gap: 10px;
+    height: auto;
+    min-height: auto;
+    position: relative;
+}
+
+form > input{
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    padding-left: 10px;
+    border:none;
+}
+.fullname > input{
+    height: 40px;
+    border:none;
+    width: 140px;
+    padding-left: 10px;
+    border-radius: 20px;
+}
+
+button{
+    width: 300px;
+    padding-left: 10px;
+    height: 40px;
+    border-radius: 20px;
+    border:none;
+    background-color: #123730;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover{
+    background-color: #17453d;
+}
+
+#error{
+    display:none;
+    transition: all 0.5s;
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.error-msg{
+    display: none;
+    padding: 20px;
+    background-color: white; 
+    color: green;
+    position: fixed; 
+    top: 0;  
+    left: 50%; 
+    transform: translate(-50%); 
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+    font-size: 20px;
+}
+
+#taken{
+    color:red;
+    margin: 0;
+    padding: 0;
+}
