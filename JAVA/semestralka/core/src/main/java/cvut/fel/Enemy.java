@@ -4,33 +4,57 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-
-import java.awt.*;
+import cvut.fel.SaveState.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 
+
 public class Enemy {
-    private static final String TEXTURE_NAME= "enemy.png";
-    public Sprite sprite;
-    private Texture texture;
+    public static final String TEXTURE_NAME= "enemy.png";
+    public transient Sprite sprite;
+    private transient Texture texture;
     private List<Bullet> bullets;
     private int bullet_speed = -300;
     private float SpawnTimer = 0f;
     private float lastFireTime = 0;
     private static final float FIRE_RATE = 2f;
-    private static final String BULLET_NAME= "laser_red.png";
-    public Rectangle enemyRectangle;
+    public  final String BULLET_NAME= "laser_red.png";
+    public Integer row;
+    public Integer col;
 
-    public Enemy(int x, int y) {
+
+    public Enemy(int x, int y, int row, int col){
         this.texture = new Texture(TEXTURE_NAME);
         this.sprite = new Sprite(texture);
         this.sprite.setSize(50, 50);
         this.sprite.setPosition(x, y);
-        this.enemyRectangle = new Rectangle();
         this.bullets = new ArrayList<>();
+        this.row = row;
+        this.col = col;
+    }
+
+    public EnemyData toSave(){
+        EnemyData enemyData = new EnemyData();
+        enemyData.x = sprite.getX();
+        enemyData.y = sprite.getY();
+        enemyData.row = row;
+        enemyData.col = col;
+        enemyData.bullets = new ArrayList<>();
+        for (Bullet bullet : bullets) {
+            enemyData.bullets.add(bullet.toSave(BULLET_NAME));
+        }
+        return enemyData;
+    }
+
+    public static Enemy toLoad(EnemyData data){
+        Enemy enemy = new Enemy((int)data.x, (int)data.y, data.row, data.col );
+        for (BulletData bulletData : data.bullets) {
+            Bullet bullet = Bullet.toLoad(bulletData);
+            enemy.bullets.add(bullet);
+        }
+        return enemy;
     }
 
     public void FireBullet() {
@@ -41,12 +65,11 @@ public class Enemy {
     }
 
     public List<Bullet> getBullets(){
-        for (Bullet bullet : bullets){
-            bullet.bounds.set(bullet.sprite.getX(),bullet.sprite.getY(), bullet.sprite.getWidth(), bullet.sprite.getHeight());
-        }
         return bullets;
     }
 
+    public int getRow() { return row; }
+    public int getCol() { return col; }
 
     public void render(SpriteBatch batch){
         SpawnTimer += Gdx.graphics.getDeltaTime();
@@ -56,6 +79,7 @@ public class Enemy {
             SpawnTimer = 0f;
         }
         batch.draw(texture, sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
+       //move
         for (int i = bullets.size() -1 ; i >= 0; i--) {
             bullets.get(i).move(Gdx.graphics.getDeltaTime(), bullet_speed);
 
