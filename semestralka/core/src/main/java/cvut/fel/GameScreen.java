@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import cvut.fel.MenuScreen.GameMode;
+
 
 public class GameScreen implements Screen {
     private final Space game;
@@ -25,14 +27,16 @@ public class GameScreen implements Screen {
     private float waveClearedTimer = 0f;
     private boolean waveCleared = false;
     public int wavenumber = 0;
+    private GameMode mode;
 
-    public GameScreen(Space game) {
+    public GameScreen(Space game, GameMode mode) {
         this.score = 0;
         this.game = game;
         ship = new SpaceShip();
-        enemyspawn = new Enemyspawn(wave);
+        enemyspawn = new Enemyspawn(wave, mode.spawnRate, mode.enemySkin, mode.bulletSpeed);
         font = new BitmapFont();
         layout = new GlyphLayout();
+        this.mode = mode;
     }
 
     public GameScreen(Space game, SaveState saveState) {
@@ -41,16 +45,21 @@ public class GameScreen implements Screen {
         this.wave = saveState.wave.wave;
         this.killed = saveState.wave.killed;
         this.game = game;
+        this.mode = new GameMode();
+        mode.enemySkin = saveState.mode.enemySkin;
+        mode.spawnRate = saveState.mode.spawnRate;
+        mode.bulletSpeed = saveState.mode.bulletSpeed;
         font = new BitmapFont();
         layout = new GlyphLayout();
         ship = SpaceShip.toLoad(saveState.ship);
-        enemyspawn = Enemyspawn.toLoad(saveState.enemyspawn);
+        enemyspawn = Enemyspawn.toLoad(saveState.enemyspawn, saveState.mode);
         this.wavenumber = saveState.wavenumber;
     }
 
 
     public void save(){
         SaveState saveState = new SaveState();
+        saveState.mode = new SaveState.ModeData(mode);
         saveState.wavenumber = wavenumber;
         saveState.wave = new SaveState.waveData(wave, killed);
         saveState.score = this.score;
@@ -153,8 +162,8 @@ public class GameScreen implements Screen {
                 enemyspawn.enemyCount = 0;
                 wave += 5;
                 enemyspawn.spawninterval *= 0.9f;
-                if (enemyspawn.spawninterval <= 0.5f) {
-                    enemyspawn.spawninterval = 0.5f;
+                if (enemyspawn.spawninterval <= 0.3f) {
+                    enemyspawn.spawninterval = 0.3f;
                 }
                 enemyspawn.enemyLimit = wave;
                 killed = 0;

@@ -1,0 +1,5 @@
+{
+  "enemySkin": "enemy_hard.png",
+  "spawnRate": 1,
+  "bulletSpeed": -400
+}

@@ -21,11 +21,16 @@ public class Enemyspawn {
     public boolean[][] grid;
     public int enemyCount = 0;
     public int enemyLimit;
+    public String enemySkin ;
+    public int bulletSpeed;
 
-    public Enemyspawn(int enemyLimit) {
+    public Enemyspawn(int enemyLimit,float spawninterval, String enemySkin, int bulletSpeed) {
         this.enemies = new ArrayList<>();
         this.grid = new boolean[ROWS][COLUMNS];
         this.enemyLimit = enemyLimit;
+        this.spawninterval = spawninterval;
+        this.enemySkin = enemySkin;
+        this.bulletSpeed = bulletSpeed;
     }
 
     public void spawnEnemies(int enemyLimit){
@@ -38,7 +43,7 @@ public class Enemyspawn {
             }
             grid[randomY][randomX] = true;
             enemyCount++;
-            Enemy enemy = new Enemy(START_X + randomX * ENEMY_WIDTH, START_Y - randomY * ENEMY_HEIGHT,  randomY, randomX);
+            Enemy enemy = new Enemy(START_X + randomX * ENEMY_WIDTH, START_Y - randomY * ENEMY_HEIGHT,  randomY, randomX, enemySkin, bulletSpeed);
             enemies.add(enemy);
 
         }
@@ -57,13 +62,13 @@ public class Enemyspawn {
         return spawnerData;
     }
 
-    public static Enemyspawn toLoad(SpawnerData data) {
-        Enemyspawn enemySpawn = new Enemyspawn(data.enemyLimit);
+    public static Enemyspawn toLoad(SpawnerData data, ModeData mode) {
+        Enemyspawn enemySpawn = new Enemyspawn(data.enemyLimit, mode.spawnRate, mode.enemySkin, mode.bulletSpeed);
         enemySpawn.enemyCount = data.enemyCount;
         enemySpawn.spawninterval = data.spawnrate;
         enemySpawn.grid = data.grid;
         for (EnemyData enemyData : data.enemies) {
-            Enemy enemy = Enemy.toLoad(enemyData);
+            Enemy enemy = Enemy.toLoad(enemyData, mode.enemySkin, mode.bulletSpeed);
             enemySpawn.enemies.add(enemy);
         }
         return enemySpawn;

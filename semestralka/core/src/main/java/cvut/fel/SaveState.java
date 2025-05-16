@@ -13,7 +13,7 @@ public class SaveState {
     public SpawnerData enemyspawn;
     public  waveData wave;
     public int wavenumber;
-
+    public ModeData mode;
 
     public SaveState(){
         this.wavenumber = 0;
@@ -21,7 +21,26 @@ public class SaveState {
         this.ship = null;
         this.enemyspawn = null;
         this.wave = null;
+        this.mode = null;
     }
+
+    public static class ModeData{
+        public String enemySkin;
+        public float spawnRate;
+        public int bulletSpeed;
+
+        public ModeData(){
+            this.enemySkin = "";
+            this.spawnRate = 0;
+            this.bulletSpeed = 0;
+        }
+        public ModeData(MenuScreen.GameMode gameMode){
+            this.enemySkin = gameMode.enemySkin;
+            this.spawnRate = gameMode.spawnRate;
+            this.bulletSpeed = gameMode.bulletSpeed;
+        }
+    }
+
 
     public static class waveData{
         public int wave;
@@ -54,6 +73,8 @@ public class SaveState {
         public int row;
         public int col;
         public List<BulletData> bullets;
+        public String texture_name;
+        public int bullet_speed;
 
         EnemyData(){
             this.x = 0;

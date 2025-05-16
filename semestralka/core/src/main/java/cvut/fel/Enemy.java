@@ -12,27 +12,28 @@ import java.util.List;
 
 
 public class Enemy {
-    public static final String TEXTURE_NAME= "enemy.png";
+    public String textureName;
     public transient Sprite sprite;
     private transient Texture texture;
     private List<Bullet> bullets;
     private int bullet_speed = -300;
     private float SpawnTimer = 0f;
-    private float lastFireTime = 0;
     private static final float FIRE_RATE = 2f;
     public  final String BULLET_NAME= "laser_red.png";
     public Integer row;
     public Integer col;
 
 
-    public Enemy(int x, int y, int row, int col){
-        this.texture = new Texture(TEXTURE_NAME);
+    public Enemy(int x, int y, int row, int col, String textureName, int bullet_speed) {
+        this.textureName = textureName;
+        this.texture = new Texture(textureName);
         this.sprite = new Sprite(texture);
         this.sprite.setSize(50, 50);
         this.sprite.setPosition(x, y);
         this.bullets = new ArrayList<>();
         this.row = row;
         this.col = col;
+        this.bullet_speed = bullet_speed;
     }
 
     public EnemyData toSave(){
@@ -48,8 +49,8 @@ public class Enemy {
         return enemyData;
     }
 
-    public static Enemy toLoad(EnemyData data){
-        Enemy enemy = new Enemy((int)data.x, (int)data.y, data.row, data.col );
+    public static Enemy toLoad(EnemyData data, String textureName, int bullet_speed) {
+        Enemy enemy = new Enemy((int)data.x, (int)data.y, data.row, data.col, textureName, bullet_speed);
         for (BulletData bulletData : data.bullets) {
             Bullet bullet = Bullet.toLoad(bulletData);
             enemy.bullets.add(bullet);

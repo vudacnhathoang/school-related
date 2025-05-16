@@ -1,0 +1,5 @@
+{
+  "enemySkin": "enemy_medium.png",
+  "spawnRate": 1.5,
+  "bulletSpeed": -350
+}
