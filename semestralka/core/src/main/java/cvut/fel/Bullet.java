@@ -47,7 +47,9 @@ public class Bullet {
     }
 
     public void dispose(){
-        // TODO
+        texture.dispose();
+        sprite.getTexture().dispose();
+
     }
 
 

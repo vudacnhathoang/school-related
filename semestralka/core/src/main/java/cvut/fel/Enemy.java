@@ -96,5 +96,9 @@ public class Enemy {
 
     public void dispose(){
         texture.dispose();
+        sprite.getTexture().dispose();
+        for (Bullet bullet : bullets) {
+            bullet.dispose();
+        }
     }
 }

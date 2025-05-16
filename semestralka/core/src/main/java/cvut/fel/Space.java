@@ -2,6 +2,7 @@ package cvut.fel;
 
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
@@ -16,8 +17,29 @@ public class Space extends Game {
     }
 
 
+
     @Override
     public void dispose() {
-        batch.dispose();
+        super.dispose();
+        if (getScreen() instanceof GameScreen) {
+            GameScreen gameScreen = (GameScreen) getScreen();
+            gameScreen.dispose();
+
+        }
+        if (getScreen() instanceof MenuScreen) {
+            MenuScreen menuScreen = (MenuScreen) getScreen();
+            menuScreen.dispose();
+        }
+        if (getScreen() instanceof GameOverScreen) {
+            GameOverScreen gameOverScreen = (GameOverScreen) getScreen();
+            gameOverScreen.dispose();
+        }
+
+        if (getScreen() instanceof LeaderboardScreen) {
+            LeaderboardScreen leaderboardScreen = (LeaderboardScreen) getScreen();
+            leaderboardScreen.dispose();
+        }
+
+
     }
 }

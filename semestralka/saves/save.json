@@ -1,0 +1,67 @@
+{
+"ship": {
+	"x": 504.0787,
+	"y": 98.73764,
+	"health": 3,
+	"bullets": [
+		{
+			"x": 334,
+			"y": 741.4449,
+			"TextureName": "laser_green.png"
+		},
+		{
+			"x": 550,
+			"y": 349.69897,
+			"TextureName": "laser_green.png"
+		}
+	]
+},
+"enemyspawn": {
+	"spawnrate": 2,
+	"enemyCount": 1,
+	"enemyLimit": 5,
+	"grid": [
+		[
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false
+		],
+		[
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			false,
+			true
+		]
+	],
+	"enemies": [
+		{
+			"x": 545,
+			"y": 611,
+			"row": 1,
+			"col": 9,
+			"bullets": []
+		}
+	]
+},
+"wave": {
+	"wave": 5
+},
+"mode": {
+	"enemySkin": "enemy_easy.png",
+	"spawnRate": 2,
+	"bulletSpeed": -300
+}
+}

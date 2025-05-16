@@ -2,3 +2,4 @@ Petr:1000
 Petricek:10
 test:10
 tes2:20
+jakub:0

@@ -13,6 +13,8 @@ import java.util.List;
 import cvut.fel.MenuScreen.GameMode;
 
 
+
+
 public class GameScreen implements Screen {
     private final Space game;
     private SpaceShip ship;
@@ -28,15 +30,19 @@ public class GameScreen implements Screen {
     private boolean waveCleared = false;
     public int wavenumber = 0;
     private GameMode mode;
+    private final TimeManager timer;
 
     public GameScreen(Space game, GameMode mode) {
+        this.timer = new TimeManager();
+        timer.startTimer();
         this.score = 0;
         this.game = game;
         ship = new SpaceShip();
-        enemyspawn = new Enemyspawn(wave, mode.spawnRate, mode.enemySkin, mode.bulletSpeed);
+        enemyspawn = new Enemyspawn(wave, mode.spawnRate, mode.enemySkin, mode.bulletSpeed, timer);
         font = new BitmapFont();
         layout = new GlyphLayout();
         this.mode = mode;
+        Gdx.app.log("GameScreen " + timer.getCurrentTime(), "Game started");
     }
 
     public GameScreen(Space game, SaveState saveState) {
@@ -52,8 +58,13 @@ public class GameScreen implements Screen {
         font = new BitmapFont();
         layout = new GlyphLayout();
         ship = SpaceShip.toLoad(saveState.ship);
+        this.timer = new TimeManager();
+        timer.startTimer();
         enemyspawn = Enemyspawn.toLoad(saveState.enemyspawn, saveState.mode);
+        enemyspawn.timer = timer;
         this.wavenumber = saveState.wavenumber;
+
+
     }
 
 
@@ -86,6 +97,7 @@ public class GameScreen implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)&& Paused) {
             save();
+            timer.stopTimer();
             game.setScreen(new MenuScreen(game));
         }
 
@@ -130,10 +142,14 @@ public class GameScreen implements Screen {
                     Bullet bullet = bulletEnemyIterator.next();
                     if(ship.sprite.getBoundingRectangle().overlaps(bullet.sprite.getBoundingRectangle())) {
                         ship.health--;
+                        Gdx.app.log("Spaceship " + timer.getCurrentTime() ,"Ship was struct by enemy bullet");
                         if (ship.health <= 0) {
                             if (savefile.exists()) {
+                                Gdx.app.log("GameOver " + timer.getCurrentTime(), "save file deleted");
                                 savefile.delete();
                             }
+                            Gdx.app.log("GameOver " + timer.getCurrentTime(), "Game Over");
+                            timer.stopTimer();
                             game.setScreen(new GameOverScreen(game, score));
                         }
                         bulletEnemyIterator.remove();
@@ -147,6 +163,7 @@ public class GameScreen implements Screen {
                         this.score += 10;
                         enemyspawn.grid[enemy.row][enemy.col] = false;
                         enemiesToRemove.add(enemy);
+                        Gdx.app.log("GameScreen " + timer.getCurrentTime(), "Enemy killed at " + enemy.sprite.getX() + ", " + enemy.sprite.getY());
                         killed ++;
                         bulletIterator.remove();
                         break;
@@ -180,5 +197,11 @@ public class GameScreen implements Screen {
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {}
-    @Override public void dispose() {}
+    @Override public void dispose() {
+        game.batch.dispose();
+        font.dispose();
+        ship.dispose();
+        enemyspawn.dispose();
+        timer.stopTimer();
+    }
 }

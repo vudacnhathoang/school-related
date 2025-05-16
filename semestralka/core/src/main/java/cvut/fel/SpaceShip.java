@@ -151,6 +151,7 @@ public class SpaceShip {
     }
 
     public void dispose(){
+
         texture.dispose();
         for (Bullet bullet : bullets) {
             bullet.dispose();
