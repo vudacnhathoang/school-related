@@ -1,24 +1,20 @@
 {
+"score": 40,
 "ship": {
-	"x": 504.0787,
-	"y": 98.73764,
+	"x": 327.7965,
+	"y": 139.68735,
 	"health": 3,
 	"bullets": [
 		{
-			"x": 334,
-			"y": 741.4449,
-			"TextureName": "laser_green.png"
-		},
-		{
-			"x": 550,
-			"y": 349.69897,
+			"x": 449,
+			"y": 567.68774,
 			"TextureName": "laser_green.png"
 		}
 	]
 },
 "enemyspawn": {
-	"spawnrate": 2,
-	"enemyCount": 1,
+	"spawnrate": 1,
+	"enemyCount": 5,
 	"enemyLimit": 5,
 	"grid": [
 		[
@@ -29,7 +25,7 @@
 			false,
 			false,
 			false,
-			false,
+			true,
 			false,
 			false
 		],
@@ -43,25 +39,31 @@
 			false,
 			false,
 			false,
-			true
+			false
 		]
 	],
 	"enemies": [
 		{
-			"x": 545,
-			"y": 611,
-			"row": 1,
-			"col": 9,
-			"bullets": []
+			"x": 425,
+			"y": 700,
+			"col": 7,
+			"bullets": [
+				{
+					"x": 438,
+					"y": 15.71311,
+					"TextureName": "laser_red.png"
+				}
+			]
 		}
 	]
 },
 "wave": {
-	"wave": 5
+	"wave": 5,
+	"killed": 4
 },
 "mode": {
-	"enemySkin": "enemy_easy.png",
-	"spawnRate": 2,
-	"bulletSpeed": -300
+	"enemySkin": "enemy_hard.png",
+	"spawnRate": 1,
+	"bulletSpeed": -400
 }
 }

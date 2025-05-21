@@ -21,6 +21,14 @@ public class Space extends Game {
     @Override
     public void dispose() {
         super.dispose();
+        if (batch != null) {
+            batch.dispose();
+        }
+        Screen screen = getScreen();
+        if (screen != null) {
+            screen.dispose();
+        }
+
         if (getScreen() instanceof GameScreen) {
             GameScreen gameScreen = (GameScreen) getScreen();
             gameScreen.dispose();

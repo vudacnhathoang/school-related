@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -45,7 +44,7 @@ public class LeaderboardScreen implements Screen {
     private void loadEntries() {
         FileHandle file = Gdx.files.local("leaderboard.txt");
         if (!file.exists()) {
-           System.out.println("File does not exist");
+           Gdx.app.error("LeaderboardScreen", "File does not exist");
         }
         if (!file.exists()) return;
 
@@ -56,7 +55,7 @@ public class LeaderboardScreen implements Screen {
                 try {
                     entries.add(new Entry(parts[0], Integer.parseInt(parts[1])));
                 } catch (NumberFormatException e) {
-                    // skip invalid
+                   Gdx.app.error("LeaderboardScreen", "Bad line in entry: " + line);
                 }
             }
             entries.sort((a, b) -> Integer.compare(b.score, a.score));

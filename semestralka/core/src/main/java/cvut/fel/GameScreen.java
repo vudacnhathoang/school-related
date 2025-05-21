@@ -203,5 +203,6 @@ public class GameScreen implements Screen {
         ship.dispose();
         enemyspawn.dispose();
         timer.stopTimer();
+        ship.dispose();
     }
 }

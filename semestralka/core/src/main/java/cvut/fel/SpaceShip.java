@@ -122,7 +122,6 @@ public class SpaceShip {
             bullet.move(delta, bullet_speed);
             if (bullet.sprite.getY() > Gdx.graphics.getHeight()) {
                 iterator.remove();
-                System.out.println( "Size of bullets: " + bullets.size());
             }
         }
     }
@@ -152,6 +151,12 @@ public class SpaceShip {
 
     public void dispose(){
 
+        if (sprite != null) {
+            sprite.getTexture().dispose();
+        }
+        if (healthTexture != null) {
+            healthTexture.dispose();
+        }
         texture.dispose();
         for (Bullet bullet : bullets) {
             bullet.dispose();

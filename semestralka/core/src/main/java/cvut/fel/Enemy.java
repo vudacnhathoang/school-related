@@ -34,6 +34,11 @@ public class Enemy {
         this.row = row;
         this.col = col;
         this.bullet_speed = bullet_speed;
+
+        if (texture != null) {
+            this.sprite = new Sprite(texture);
+            this.sprite.setPosition(x, y);
+        }
     }
 
     public EnemyData toSave(){
@@ -93,6 +98,10 @@ public class Enemy {
         }
     }
 
+
+    public int getRowIndex() { return row; }
+    public int getColIndex() { return col; }
+    public float getBulletSpeed() { return bullet_speed; }
 
     public void dispose(){
         texture.dispose();

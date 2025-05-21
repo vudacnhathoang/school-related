@@ -97,5 +97,6 @@ public class Enemyspawn {
         for (Enemy enemy : enemies) {
             enemy.dispose();
         }
+        enemies.clear();
     }
 }
