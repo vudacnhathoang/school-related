@@ -36,6 +36,11 @@ public class Enemyspawn {
         this.bulletSpeed = bulletSpeed;
     }
 
+    /**
+     * Spawns enemies in the grid based on the enemy limit.
+     * Ensures that enemies are spawned in empty grid positions.
+     * @param enemyLimit The maximum number of enemies to spawn.
+     */
     public void spawnEnemies(int enemyLimit) {
         if (enemyCount < enemyLimit && enemyCount < 20) {
             int randomX = random.nextInt(10);
@@ -52,6 +57,10 @@ public class Enemyspawn {
         }
     }
 
+    /**
+     * Converts the current state of the enemy spawn to a saveable format.
+     * @return A SpawnerData object containing the spawn rate, enemy count, enemy limit, grid state, and enemy data.
+     */
     public SaveState.SpawnerData toSave() {
         SaveState.SpawnerData spawnerData = new SaveState.SpawnerData();
         spawnerData.spawnrate = spawninterval;
@@ -65,6 +74,12 @@ public class Enemyspawn {
         return spawnerData;
     }
 
+    /**
+     * Loads the enemy spawn state from saved data.
+     * @param data The saved spawner data.
+     * @param mode The game mode data containing spawn rate, enemy skin, and bullet speed.
+     * @return An Enemyspawn object initialized with the loaded data.
+     */
     public static Enemyspawn toLoad(SaveState.SpawnerData data, SaveState.ModeData mode) {
         Enemyspawn enemySpawn = new Enemyspawn(data.enemyLimit, mode.spawnRate, mode.enemySkin, mode.bulletSpeed, null);
         enemySpawn.enemyCount = data.enemyCount;

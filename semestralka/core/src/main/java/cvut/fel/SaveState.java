@@ -115,7 +115,10 @@ public class SaveState {
             this.bullets = null;
         }
     }
-
+    /**
+     * Saves the current game state to a JSON file.
+     * The file is saved in the local directory under "saves/save.json".
+     */
     public void saveGame(){
         FileHandle file = Gdx.files.local("saves/save.json");
         Json json = new Json();

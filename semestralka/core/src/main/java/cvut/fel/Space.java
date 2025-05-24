@@ -30,6 +30,7 @@ public class Space extends Game {
         }
 
         if (getScreen() instanceof GameScreen) {
+
             GameScreen gameScreen = (GameScreen) getScreen();
             gameScreen.dispose();
 

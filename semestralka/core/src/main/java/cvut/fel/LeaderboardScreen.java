@@ -27,6 +27,7 @@ public class LeaderboardScreen implements Screen {
         this.game = game;
     }
 
+    //Creating a LeaderboardScreen that displays the leaderboard entries
     @Override
     public void show() {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -41,6 +42,11 @@ public class LeaderboardScreen implements Screen {
         buildTable();
     }
 
+    /**
+     * Loads leaderboard entries from a file.
+     * The file should be in the format "name:score" per line.
+     * Entries are sorted by score in descending order.
+     */
     private void loadEntries() {
         FileHandle file = Gdx.files.local("leaderboard.txt");
         if (!file.exists()) {
@@ -61,7 +67,7 @@ public class LeaderboardScreen implements Screen {
             entries.sort((a, b) -> Integer.compare(b.score, a.score));
         }
     }
-
+    // Builds the table to display the leaderboard entries
     private void buildTable() {
         table.row();
         table.add(new Label("RANK", skin)).pad(10);

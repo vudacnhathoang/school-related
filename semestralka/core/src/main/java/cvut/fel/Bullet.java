@@ -22,6 +22,11 @@ public class Bullet {
         this.sprite.setPosition(x, y);
     }
 
+    /**
+     * Converts the bullet to a saveable format.
+     * @param texturename The name of the texture used for the bullet.
+     * @return A BulletData object containing the bullet's position and texture name.
+     */
     public BulletData toSave(String texturename){
         BulletData data = new BulletData();
         data.x = sprite.getX();
@@ -30,21 +35,37 @@ public class Bullet {
         return data;
     }
 
+    /**
+     * Creates a Bullet object from saved data.
+     * @param data The saved bullet data.
+     * @return A Bullet object initialized with the data.
+     */
+
     public static Bullet toLoad(BulletData data){
         Bullet bullet = new Bullet(data.TextureName, (int)data.x, (int)data.y);
         return bullet;
     }
 
+    /**
+     * Moves the bullet by a given speed in the vertical direction.
+     * @param delta Time delta since last frame.
+     * @param speed Speed of the bullet movement.
+     */
 
     public void move(float delta, int speed){
         sprite.setPosition(sprite.getX(), sprite.getY() + speed *delta);
 
     }
 
+    /**
+     * Renders the bullet on the screen
+     * @param batch SpriteBatch to render the bullet
+     */
     public void render(SpriteBatch batch){
         batch.draw(texture, sprite.getX(), sprite.getY(), width, height);
 
     }
+
 
     public void dispose(){
         texture.dispose();

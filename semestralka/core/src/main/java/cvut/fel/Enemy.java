@@ -41,6 +41,11 @@ public class Enemy {
         }
     }
 
+
+    /**
+     * Converts the enemy to a saveable format.
+     * @return An EnemyData object containing the enemy's position, row, column, and bullets.
+     */
     public EnemyData toSave(){
         EnemyData enemyData = new EnemyData();
         enemyData.x = sprite.getX();
@@ -54,6 +59,13 @@ public class Enemy {
         return enemyData;
     }
 
+    /**
+     * Creates an Enemy object from saved data.
+     * @param data The saved enemy data.
+     * @param textureName The name of the texture used for the enemy.
+     * @param bullet_speed The speed of the bullets fired by the enemy.
+     * @return An Enemy object initialized with the data.
+     */
     public static Enemy toLoad(EnemyData data, String textureName, int bullet_speed) {
         Enemy enemy = new Enemy((int)data.x, (int)data.y, data.row, data.col, textureName, bullet_speed);
         for (BulletData bulletData : data.bullets) {
@@ -63,6 +75,10 @@ public class Enemy {
         return enemy;
     }
 
+    /**
+     * Fires a bullet from the enemy's position.
+     * The bullet is created at the center of the enemy sprite and moves upwards.
+     */
     public void FireBullet() {
 
         int bulletX = (int) (sprite.getX()  + sprite.getWidth() / 2 - Bullet.width / 2);
@@ -74,8 +90,6 @@ public class Enemy {
         return bullets;
     }
 
-    public int getRow() { return row; }
-    public int getCol() { return col; }
 
     public void render(SpriteBatch batch){
         SpawnTimer += Gdx.graphics.getDeltaTime();
@@ -85,7 +99,7 @@ public class Enemy {
             SpawnTimer = 0f;
         }
         batch.draw(texture, sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-       //move
+       //movement of bullets
         for (int i = bullets.size() -1 ; i >= 0; i--) {
             bullets.get(i).move(Gdx.graphics.getDeltaTime(), bullet_speed);
 

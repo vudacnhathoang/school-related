@@ -12,7 +12,9 @@ public class TimeManager {
         this.currentTime = LocalTime.now();
     }
 
-
+    /**
+     * Starts a timer that updates the current time every second.
+     */
     public void startTimer() {
         executor.scheduleAtFixedRate(() -> {
             currentTime = LocalTime.now();
@@ -23,6 +25,9 @@ public class TimeManager {
         return currentTime;
     }
 
+    /**
+     * Stops the timer.
+     */
     public void stopTimer() {
         executor.shutdown();
     }

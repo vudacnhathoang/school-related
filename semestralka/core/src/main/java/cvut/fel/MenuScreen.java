@@ -26,8 +26,13 @@ public class MenuScreen implements Screen {
         public GameMode(){}
     }
 
-
-
+    /**
+     * Constructor for the MenuScreen.
+     * Initializes the stage, skin, and UI elements.
+     * Sets up listeners for buttons to start a new game or load a saved game.
+     *
+     * @param game The main game instance.
+     */
     public MenuScreen(Space game) {
         this.game = game;
 
@@ -69,7 +74,7 @@ public class MenuScreen implements Screen {
         table.add(hardRadio).left().padBottom(20).row();
         table.add(logButton).left().padBottom(20).row();
 
-
+        // Add listeners for buttons
         newGameBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 String selectedFile = null;
@@ -90,6 +95,7 @@ public class MenuScreen implements Screen {
 
             }
         });
+        // Load game button
         loadGameBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 FileHandle savefile = Gdx.files.internal("saves/save.json");
@@ -101,7 +107,7 @@ public class MenuScreen implements Screen {
                 }
             }
         });
-
+        // Scoreboard button
         scoreboardBtn.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new LeaderboardScreen(game));

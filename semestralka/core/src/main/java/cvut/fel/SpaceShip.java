@@ -71,6 +71,11 @@ public class SpaceShip {
             bullets.add(new Bullet(BULLET_NAME, bulletX, bulletY));
         }
 
+
+    /**
+     * Input handler for the spaceship.
+     * @param delta
+     */
     public void HandleInput(float delta){
         float newX = sprite.getX();
         float newY = sprite.getY();
@@ -114,7 +119,10 @@ public class SpaceShip {
         sprite.setPosition(newX, newY);
     }
 
-
+    /**
+     * Updates the position of the bullets and removes them if they go off-screen.
+     * @param delta Time delta since last frame.
+     */
     public void updateBullets(float delta){
         Iterator<Bullet> iterator = bullets.iterator();
         while (iterator.hasNext()) {
@@ -151,16 +159,14 @@ public class SpaceShip {
 
     public void dispose(){
 
-        if (sprite != null) {
-            sprite.getTexture().dispose();
-        }
+       sprite.getTexture().dispose();
         if (healthTexture != null) {
             healthTexture.dispose();
         }
-        texture.dispose();
         for (Bullet bullet : bullets) {
             bullet.dispose();
         }
+        bullets.clear();
     }
 
 

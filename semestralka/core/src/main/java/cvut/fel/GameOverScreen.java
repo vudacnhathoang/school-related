@@ -30,6 +30,7 @@ public class GameOverScreen implements Screen {
         this.finalScore = finalScore;
     }
 
+    //Creating a simple entry class to hold name and score
     @Override
     public void show() {
         skin = new Skin(Gdx.files.internal("uiskin.json"));

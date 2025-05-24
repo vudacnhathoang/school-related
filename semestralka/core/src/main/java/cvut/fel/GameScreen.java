@@ -84,6 +84,15 @@ public class GameScreen implements Screen {
     @Override
     public void show() {}
 
+
+
+    /**
+     * Renders the game screen.
+     * Handles input for pausing the game and saving the game state.
+     * Updates the game state and renders the ship, enemies, and score.
+     *
+     * @param delta The time elapsed since the last frame.
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0.1f, 1);
@@ -106,7 +115,7 @@ public class GameScreen implements Screen {
         layout.setText(font, scored);
         font.draw(game.batch, scored, 0, Gdx.graphics.getHeight() - 10);
 
-
+        //PAUSE HANDLE
         if (Paused) {
             layout.setText(font, "PAUSED");
             font.draw(game.batch, "Press ESC to SAVE and EXIT", Gdx.graphics.getWidth() / 2 - layout.width / 2 - 60, Gdx.graphics.getHeight() / 2 + layout.height / 2 - 50);
@@ -127,7 +136,7 @@ public class GameScreen implements Screen {
 
             }
         }
-
+        //The game logic
         else {
             ship.render(game.batch);
             enemyspawn.render(game.batch);
@@ -137,6 +146,8 @@ public class GameScreen implements Screen {
             while (enemyIterator.hasNext()) {
                 Enemy enemy = enemyIterator.next();
 
+
+                //Collision of Enemy and Ship bullets
                 Iterator<Bullet> bulletEnemyIterator = enemy.getBullets().iterator();
                 while (bulletEnemyIterator.hasNext()) {
                     Bullet bullet = bulletEnemyIterator.next();
@@ -155,6 +166,8 @@ public class GameScreen implements Screen {
                         bulletEnemyIterator.remove();
                     }
                 }
+
+                //Collision of Enemy bullets and Ship
                 Iterator<Bullet> bulletIterator = ship.getBullets().iterator();
                 while (bulletIterator.hasNext()) {
                     Bullet bullet = bulletIterator.next();
@@ -170,7 +183,7 @@ public class GameScreen implements Screen {
                     }
                 }
             }
-
+            //remove enemies that were killed
             enemyspawn.getEnemies().removeAll(enemiesToRemove);
             if (killed >= wave) {
                 waveCleared = true;
@@ -186,11 +199,7 @@ public class GameScreen implements Screen {
                 killed = 0;
             }
         }
-
-
-
         game.batch.end();
-
     }
 
     @Override public void resize(int width, int height) {}
@@ -198,7 +207,6 @@ public class GameScreen implements Screen {
     @Override public void resume() {}
     @Override public void hide() {}
     @Override public void dispose() {
-        game.batch.dispose();
         font.dispose();
         ship.dispose();
         enemyspawn.dispose();
