@@ -12,6 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+/**
+ * MenuScreen is the initial screen of the game.
+ * It allows players to start a new game, load a saved game, or view the scoreboard.
+ * Players can also select the difficulty level and enable/disable logging.
+ */
 public class MenuScreen implements Screen {
     private final Space game;
     private final Stage stage;

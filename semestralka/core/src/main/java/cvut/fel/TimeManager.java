@@ -3,6 +3,11 @@ package cvut.fel;
 import java.time.LocalTime;
 import java.util.concurrent.ScheduledExecutorService;
 
+
+/**
+ * TimeManager is responsible for managing the current time in the game.
+ * It updates the current time every second using a scheduled executor service.
+ */
 public class TimeManager {
     private final ScheduledExecutorService executor;
     private LocalTime currentTime;

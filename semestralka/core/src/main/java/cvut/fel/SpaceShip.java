@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * The SpaceShip class represents the player's spaceship in the game.
+ * It handles movement, firing bullets, rendering, and saving/loading state.
+ */
 public class SpaceShip {
     private transient Texture texture;
     private transient Texture healthTexture;

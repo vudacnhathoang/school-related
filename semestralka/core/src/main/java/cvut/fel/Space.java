@@ -5,7 +5,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
+/**
+ * The main game class that initializes the game and manages screens.
+ * It extends the Game class from libGDX and sets up the initial screen.
+ */
 public class Space extends Game {
     public SpriteBatch batch;
 

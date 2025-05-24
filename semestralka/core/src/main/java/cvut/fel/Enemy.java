@@ -10,7 +10,10 @@ import java.util.List;
 
 
 
-
+/**
+ * The Enemy class represents an enemy in the game.
+ * It contains properties such as texture, sprite, bullets, and methods to fire bullets and render the enemy.
+ */
 public class Enemy {
     public String textureName;
     public transient Sprite sprite;

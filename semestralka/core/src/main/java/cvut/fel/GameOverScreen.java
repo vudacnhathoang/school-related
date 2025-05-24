@@ -15,6 +15,11 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
+
+/**
+ * GameOverScreen is displayed when the game ends.
+ * It allows the player to enter their name and submit their score to a leaderboard.
+ */
 public class GameOverScreen implements Screen {
     private final Space game;
     private final int finalScore;

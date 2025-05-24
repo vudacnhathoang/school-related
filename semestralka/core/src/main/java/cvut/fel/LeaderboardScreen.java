@@ -16,6 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * LeaderboardScreen displays the leaderboard entries from a file.
+ * It allows users to view the top scores and navigate back to the main menu.
+ */
 public class LeaderboardScreen implements Screen {
     private final Space game;
     private Stage stage;

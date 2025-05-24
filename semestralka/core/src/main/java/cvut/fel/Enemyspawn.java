@@ -8,6 +8,11 @@ import java.util.List;
 
 import static com.badlogic.gdx.math.MathUtils.random;
 
+
+/**
+ * The Enemyspawn class is responsible for managing the spawning of enemies in the game.
+ * It handles the grid layout, enemy limits, and spawning intervals.
+ */
 public class Enemyspawn {
     private static final int ROWS = 2;
     private static final int COLUMNS = 10;

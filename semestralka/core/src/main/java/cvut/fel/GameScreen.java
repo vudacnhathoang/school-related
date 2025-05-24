@@ -14,7 +14,11 @@ import cvut.fel.MenuScreen.GameMode;
 
 
 
-
+/**
+ * GameScreen class represents the main game screen where the player controls a spaceship,
+ * fights enemies, and manages the game state.
+ * It handles rendering, input, and game logic such as scoring and wave management.
+ */
 public class GameScreen implements Screen {
     private final Space game;
     private SpaceShip ship;

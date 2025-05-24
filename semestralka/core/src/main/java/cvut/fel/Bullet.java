@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import cvut.fel.SaveState.BulletData;
 
+/**
+ * Represents a bullet in the game.
+ * Each bullet has a texture, size, and position.
+ * It can be moved and rendered on the screen.
+ */
 public class Bullet {
 
     final static int width = 10;
