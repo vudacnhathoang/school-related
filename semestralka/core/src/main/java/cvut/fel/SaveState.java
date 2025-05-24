@@ -7,6 +7,11 @@ import com.badlogic.gdx.utils.JsonWriter;
 
 import java.util.List;
 
+/**
+ * SaveState class is used to save the current game state.
+ * It contains information about the player's score, ship data, enemy spawner data, wave data, and game mode.
+ * The saveGame method saves the current state to a JSON file.
+ */
 public class SaveState {
     public int score;
     public ShipData ship;
