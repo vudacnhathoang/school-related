@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formular</title>
+</head>
+
+<body>
+    <form action="c2.html" method="post">
+        
+        <!-- 
+        <label for="inputJmeno">Jméno:</label>
+        <input id="inputJmeno"> 
+        -->
+        <fieldset>
+            <legend>Zakladni udaje</legend>
+            <label>Jméno:
+                <input type="text" name="jmeno" minlength="3" maxlength="100" >   <!-- readonly - nelze upravit -->  <!-- disabled - nelze odeslat -->
+            </label>
+            <br>
+            <label>Příjmení:
+                <input type="text" name="prijmeni">
+            </label>
+            <br>
+            <label>Heslo:
+                <input type="password" name="heslo">
+            </label>
+            <br>
+        </fieldset>
+        <label>
+            <input type="checkbox" name="souhlas"> Souhlasím s podmínkami
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="pohlavi" value="muz" checked> Muž
+            <input type="radio" name="pohlavi" value="zena"> Žena
+        </label>
+        <br>
+        <input type="color"> <!-- v praxi not good, use some constructed javascript -->
+        <br>
+        <input type="file" name = "soubor">
+        <br>
+
+        <textarea name="popis" id="" ></textarea>
+        <br>
+        <button type="submit" name ="registrace">Registruj se</button>
+
+    </form>
+</body>
+</html>

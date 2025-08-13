@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="us.css">
+    <meta charset="UTF-8">
+    <title>USERS</title>
+</head>
+<body>
+    <h2>Users</h2>
+    <div id="users">
+        <input type="search" name="user" id="userInput" autocomplete="off">
+        <ul>
+        </ul>
+    </div>
+</body>
+
+<script>
+    const userInput = document.querySelector("#userInput");
+    userInput.addEventListener("input", nacteniuzivatelu);
+
+
+    function vykresleni(users){
+        const seznam = document.querySelector("#users ul");
+        seznam.innerHTML = "";
+        for(const user of users){
+            sezba.innerHTML += `<li>${user.name}</li>`;
+        }
+    }
+
+    function nacteniuzivatelu(){
+        
+        const napsal = document.querySelector("#userInput").value;
+        fetch("student.php?search=" + napsal)
+            .then(response => response.json())
+            .then(users => vykresleni(users));
+    }
+
+    function nactiuzivatele()
+    {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "users.json");
+        xhr.onload = function(){
+            if (xhr.status === 200)
+            {
+                let users = JSON.parse(xhr.responseText);
+                vykresleni(users);
+
+            }
+        }
+        xhr.send();
+    }
+
+    async function nactiuzvatele2() {
+        let result = await fetch("users.json");
+        let users = await result.json();
+        vykresleni(users);
+    }
+
+</script>
+</html>

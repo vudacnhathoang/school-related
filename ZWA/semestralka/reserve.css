@@ -1,0 +1,73 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('images/reverseb.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.container{
+    backdrop-filter: blur(5px);
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    width: 300px;
+    height: 400px;  
+    padding: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+
+form{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+form > *{
+    margin: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input, select {
+    width: 100%; 
+    padding: 8px; 
+    text-align: left;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+#back{
+    position:fixed;
+    top:20px;
+    left: 30px;
+    border-radius: 20px;
+    border: 1px solid #123730;
+    color:#123730;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button{
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #123730;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover{
+    background-color: #1c594e;
+}

@@ -1,0 +1,46 @@
+/* body article{
+    background-color: blueviolet;   
+}
+
+html body article{
+    background-color: red;
+}
+
+article:hover{
+    color: white;
+    background-color: black;
+}
+
+article:first-child{
+    display: inline;    
+}
+
+article:last-child{
+    display: inline;    
+} */
+article::after{
+    content: "-----------------------------"
+}
+
+article:last-of-type::after
+{
+    content: ""
+}
+
+#clanek-berlin{
+    background-color: red;
+}
+
+@media screen and (max-width: 1000px) {
+    article{
+        background-color: yellow;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    article{
+        background-color: blue;
+        margin:10px 15px 10px 15px;
+    }
+    
+}

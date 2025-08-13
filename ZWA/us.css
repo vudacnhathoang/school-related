@@ -1,0 +1,25 @@
+#users{
+    width: 15em;
+
+}
+#userInput{
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
+#users ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #000000;
+    border-radius: 2px;
+}
+#users ul li{
+    padding-left: 1em;
+}
+#users ul li:hover{
+    background-color: #6448c2;
+}
+#users ul:empty{
+    display: none;
+}

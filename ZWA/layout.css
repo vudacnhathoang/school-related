@@ -1,0 +1,40 @@
+
+/* nav{
+float: right;
+}
+
+aside{
+float: left;
+}
+
+main {
+clear: both;
+} */
+ div, aside, main ,nav{
+background-color: lightgreen;
+border: 1px solid black;
+ }
+
+
+body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+
+@media  screen and (max-width: 600px) {
+    body {
+        flex-flow:  column nowrap;
+    }
+    nav {
+        order: 1;
+    }
+    main {
+        order: 3;
+    }
+    aside {
+        order: 2;
+    }    
+}
+/* flexbox froggy */
